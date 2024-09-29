@@ -19,22 +19,17 @@
 /*					@todo
 
 @general
-	- add document-like google view mode
 	- style source view codeblocks the same as rendered 
 	- add image grids snippet
 	- add custom checkboxes for useful task statuses
 	- try a gradient color-scheme
-
 @git
-	- publish theme to my github	
 	- write about ui & it's impact on psychology. to utilize psychology to make addictive tools (that are actually good for you to use!)
-
 @post
 	- inquire constructive criticisim
 	- share theme with community on obsidian & discord & reddit & ui
 
-
------------------------------------------------ */
+*/
 
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
@@ -393,7 +388,19 @@ hr.workspace-leaf-resize-handle:active
 
 
 
+/* -----------------------------------------------------
+|   Markdown syntax	highlighting						|
+ ----------------------------------------------------- */
 
+.cm-formatting {
+	color: var(--color-purple) !important;
+	color: var(--color-red) !important;
+	color: var(--color-green) !important;
+	color: var(--color-pink) !important;
+	color: var(--text-faint) !important;
+	/* opacity: 0.5; */
+	font-family: var(--font-monospace);
+}
 
 
 
@@ -940,10 +947,10 @@ pre:hover:before
 	-webkit-mask-repeat: no-repeat;
 	-webkit-mask-image: var(--icon-copy);
 }
-.markdown-rendered button.copy-code-button:hover:after
+/* .markdown-rendered button.copy-code-button:hover:after
 {
-	/* background: var(--text-normal); */
-}
+	background: var(--text-normal);
+} */
 
 
 .markdown-rendered button.copy-code-button:hover
@@ -1070,7 +1077,8 @@ pre[class *="css" i]::before
 .HyperMD-codeblock-begin
 {
 	background: var(--color-accent) !important;
-	/* padding-top: 5px !important; */
+	--code-normal: white;
+	color: white;
 }
 
 /* ////////////////////////////				Codeblock line numbers  			////////////////////////////////// */
@@ -1235,20 +1243,6 @@ button.document-search-button[aria-label *= "replace all" i]:after
 
 
 
-/* -----------------------------------------------------
-|   Markdown syntax	highlighting						|
- ----------------------------------------------------- */
-
-.cm-formatting
-{
-	color: var(--color-purple) !important;
-	color: var(--color-red) !important;
-	color: var(--color-green) !important;
-	color: var(--color-pink) !important;
-	color: var(--text-faint) !important;
-	/* opacity: 0.5; */
-	font-family: var(--font-monospace);
-}
 
 
 
@@ -3425,35 +3419,8 @@ div.nav-files-container.node-insert-event > div:last-of-type:before
 	font-size: 0.7em;
 }
 */
-.view-header:has(button[aria-label ^= 'current view: editing' i]) .view-actions
-{
-	background-color: var(--color-orange) !important;
-}
-
-.view-header:has(button[aria-label ^= 'current view: editing' i])
-{
-	background-color: var(--color-accent) !important;
-}
-
-/* .view-header-left, */
-.view-actions
-{
-	background: #ffffff11;
-	/* background: #00000044; */
-	/* background: var(--color-orange); */
-	/* background: var(--color-cyan); */
-}
-.view-header svg
-{
-	color: black;
-}
 
 
-
-.view-header-title
-{
-	font-weight: 600;
-}
 
 
 
@@ -3464,6 +3431,7 @@ div.nav-files-container.node-insert-event > div:last-of-type:before
 
 
 /*												Hide status bar if the screen is small */
+
 .status-bar 
 {
 	/* width: 100%; */
@@ -3514,6 +3482,7 @@ div.nav-files-container.node-insert-event > div:last-of-type:before
 
 
 /*                        notes title bar header						 */
+
 .view-header 
 {
 	border-width: 0px  !important;
@@ -3532,17 +3501,52 @@ div.nav-files-container.node-insert-event > div:last-of-type:before
 	/* z-index: 2; */
 	
 }
+
+
+.forward-theme-reactive-status-bar
+.view-header:has(button[aria-label ^= 'current view: editing' i]) .view-actions
+{
+	background-color: var(--color-orange) !important;
+}
+
+.forward-theme-reactive-status-bar
+.view-header:has(button[aria-label ^= 'current view: editing' i])
+{
+	background-color: var(--color-accent) !important;
+}
+
+/* .view-header-left, */
+.view-actions
+{
+	background: #ffffff11;
+	/* background: #00000044; */
+	/* background: var(--color-orange); */
+	/* background: var(--color-cyan); */
+}
+.view-header svg
+{
+	color: black;
+}
+
+.view-header-title
+{
+	font-weight: 600;
+}
+
 div.view-header-title-container.mod-at-start.mod-fade
 {
 	justify-content: left;
 }
 
+
+.forward-theme-reactive-status-bar
 .view-header-title-parent .view-header-breadcrumb-separator
 {
 	/* opacity: 0.5; */
 	color: var(--contrast);
 }
 
+.forward-theme-reactive-status-bar
 div.view-header-title-parent
 {
 	color: var(--contrast);
@@ -3551,10 +3555,30 @@ div.view-header-title-parent
 
 div.view-header-title
 {
-	color: black;
-	color: var(--contrast) !important;
+	color: var(--contrast);
 	/* padding: 5px; */
 }
+
+.forward-theme-reactive-status-bar
+.view-header:has(button[aria-label ^= 'current view: editing' i]) div.view-header-title
+{
+	color: rgb(255, 255, 255);
+}
+.is-focused .workspace-leaf.mod-active .view-header-title {
+	color: white;
+}
+
+.is-focused .workspace-leaf.mod-active .view-header-title:focus {
+	caret-color: lime;
+	/* color: var(--color-accent); */
+	outline: 1px solid var(--contrast);
+}
+
+
+
+
+
+
 
 
 .view-header-icon div.view-header-title:before
@@ -3574,17 +3598,6 @@ div.view-header-title
 	opacity: 0.5;
 }
 
-.is-focused .workspace-leaf.mod-active .view-header-title
-{
-	color: white;
-}
-
-.is-focused .workspace-leaf.mod-active .view-header-title:focus
-{
-	caret-color: currentColor;
-	color: var(--color-accent);
-	background: black;
-}
 
 div.view-header *
 {
@@ -4486,6 +4499,12 @@ settings:
 		collapsed: true
 		level: 2	
 	-
+		id: forward-theme-reactive-status-bar
+		title: Show editing/reading mode as status bar color
+		// description: Auto-hide the tabs, titlebar & window frame?
+		default: true
+		type: class-toggle
+	-
 		id: forward-theme-reading-focus
 		title: Reading view fade inactive elements
 		// description: Auto-hide the tabs, titlebar & window frame?
@@ -4806,21 +4825,38 @@ div.app-container::before
 
 /*																		 Autohide */
 
-.forward-theme-autohide-tabs div.titlebar,
-.forward-theme-autohide-tabs div.workspace-tab-header-container
+/*
+.forward-theme-autohide-tabs div.workspace-tab-header-container,
+.forward-theme-autohide-tabs div.status-bar,
+.forward-theme-autohide-tabs div.view-header,
+.forward-theme-autohide-tabs div.titlebar
 {
 	height: 0px;
-	/* transition: all .2s !important; */
+	transition: all .2s !important;
 	opacity: 0;
 }
 
-body.forward-theme-autohide-tabs:hover div.workspace-tab-header-container, 
+body.forward-theme-autohide-tabs:hover div.workspace-tab-header-container,
+body.forward-theme-autohide-tabs:hover div.status-bar,
+body.forward-theme-autohide-tabs:hover div.view-header,
 body.forward-theme-autohide-tabs:hover div.titlebar
 {
-	height: 40px;
 	opacity: 1;
 }
 
+body.forward-theme-autohide-tabs:hover div.status-bar,
+body.forward-theme-autohide-tabs:hover div.view-header,
+body.forward-theme-autohide-tabs:hover div.titlebar
+{
+	height: unset;
+}
+
+body.forward-theme-autohide-tabs:hover div.workspace-tab-header-container
+{
+	height: unset;
+}
+
+*/
 
 /*																@file-explorer > right-align image labels [JPG, PNG]
 */
@@ -4945,3 +4981,31 @@ div.tooltip.mod-error::before
 	opacity: unset;
 }
 
+
+
+
+
+/*														@search menu 	*/
+
+
+/* 
+*			1 			removed search icon & it's padding 
+*			2 			
+*/
+
+
+/* 																			1 
+*/
+.search-input-container input:not(:placeholder-shown)~.input-right-decorator
+{
+	inset-inline-end: none;
+}
+.search-input-container input,
+.global-search-input-container.search-input-container input:not(:placeholder-shown)
+{
+	padding: 10px;
+}
+.search-input-container:before
+{
+	display: none;
+}
